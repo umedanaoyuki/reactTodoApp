@@ -23,7 +23,7 @@
             return(
               <li>
                   <label>
-                    <input type="checkbox"/>
+                    <input type="checkbox" checked={props.todo.isCompleted}/>
                     <span>{props.todo.title}</span>
                   </label>
                   <button onClick={handleDeleteClick}>Del</button>
@@ -38,6 +38,17 @@
               {id: 1, title: 'bbb', isCompleted: false},
               {id: 2, title: 'ccc', isCompleted: true},
             ]);
+
+            const handleTodoCheckboxChange = (id) => {
+              const newTodos = todos.map((todo) => {
+                return {
+                  id: todo.id,
+                  title: todo.title,
+                  isCompleted: todo.id === id ? !todo.isCompleted : todo.isCompleted,
+                };
+              });
+              setTodos(newTodos);
+            };
 
 
             const handleTodoDeleteClick = (id) => {
