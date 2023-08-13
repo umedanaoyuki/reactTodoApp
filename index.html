@@ -17,13 +17,16 @@
 
         {
           const Todo = (props) => {
+            const handleDeleteClick = () => {
+              props.onDeleteClick(props.todo.id);
+            };
             return(
               <li>
                   <label>
                     <input type="checkbox"/>
                     <span>{props.todo.title}</span>
                   </label>
-                  <button>Del</button>
+                  <button onClick={handleDeleteClick}>Del</button>
               </li>
             );
           }
@@ -41,7 +44,6 @@
               if (!confirm('Sure?')) {
                 return;
               }
-              
                 const newTods = todos.filter((todo) => {
                   return todo.id !== id;
                 });
@@ -55,11 +57,11 @@
             // ];
 
             const todoItems = todos.map((todo) => {
-
               return (
                 <Todo 
                 key={todo.id}
                 todo={todo}
+                onDeleteClick={handleTodoDeleteClick}
                 />
               );
             });
