@@ -38,7 +38,14 @@
 
 
             const handleTodoDeleteClick = (id) => {
-                  
+              if (!confirm('Sure?')) {
+                return;
+              }
+              
+                const newTods = todos.filter((todo) => {
+                  return todo.id !== id;
+                });
+                setTodos(newTods);
             };
 
             // const todos = [
